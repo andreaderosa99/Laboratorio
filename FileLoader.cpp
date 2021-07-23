@@ -36,7 +36,8 @@ void FileLoader::handleFile(string fileName) {
         File file(fileName.c_str());
         is_Loaded = true;
         notify();
-    } catch (runtime_error& e){
+    }
+    catch (runtime_error& e){
         cerr << e.what() << endl;
         is_Loaded = false;
         notify();
