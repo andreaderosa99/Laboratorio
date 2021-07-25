@@ -8,6 +8,8 @@
 
 #include <list>
 #include <iostream>
+#include <QString>
+
 
 #include "Subject.h"
 #include "File.h"
@@ -30,10 +32,14 @@ public:
 
     void notify() override;
 
+    const QString &getFileName() const;
+
+
 private:
     list<Observer*> observers;
     int numFiles;
     bool is_Loaded;
+    QString fileName;
 };
 
 

@@ -31,6 +31,7 @@ void FileLoader::loadFiles(list<string> &fileNames) {
 }
 
 void FileLoader::handleFile(string fileName) {
+    this->fileName = QString::fromStdString(fileName);
 
     try {
         File file(fileName.c_str());
@@ -52,5 +53,6 @@ bool FileLoader::isLoaded() const {
     return is_Loaded;
 }
 
-
-
+const QString &FileLoader::getFileName() const {
+    return fileName;
+}
