@@ -32,7 +32,6 @@ void FileLoader::loadFiles(list<string> &fileNames) {
 
 void FileLoader::handleFile(string fileName) {
     this->fileName = QString::fromStdString(fileName);
-
     try {
         File file(fileName.c_str());
         is_Loaded = true;

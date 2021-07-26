@@ -8,17 +8,6 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QProgressBar>
-#include <QLabel>
-#include <QErrorMessage>
-#include <QFrame>
-
-#include "Observer.h"
-#include "FileLoader.h"
-
-
-#include <QMainWindow>
-#include <QPushButton>
-#include <QProgressBar>
 #include <QString>
 #include <QLabel>
 #include <QErrorMessage>
@@ -38,7 +27,7 @@ public:
     void detach() override;
     void update() override;
 
-private slots:
+public slots:
     void startLoadingFiles();
 
 private:

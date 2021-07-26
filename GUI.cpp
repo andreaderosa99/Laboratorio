@@ -43,7 +43,7 @@ void GUI::startLoadingFiles() {
     list <string> files;
     files.push_back("Document.doc");
     files.push_back("Note.txt");
-    files.push_back("Image.jpg");
+    files.push_back("Document2.xlsx");
 
     try {
         subject->loadFiles(files);

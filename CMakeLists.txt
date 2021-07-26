@@ -8,6 +8,12 @@ set(CMAKE_AUTOMOC ON)
 
 find_package(Qt6Widgets REQUIRED)
 
-add_executable(Laboratorio main.cpp File.cpp File.h FileLoader.cpp FileLoader.h Subject.h Observer.h GUI.cpp GUI.h)
+add_subdirectory(test)
 
-target_link_libraries(Laboratorio Qt6::Widgets)
+set(SOURCE_FILES main.cpp File.cpp File.h Observer.h Subject.h FileLoader.cpp FileLoader.h GUI.cpp GUI.h)
+
+add_executable(Laboratorio main.cpp File.cpp File.h FileLoader.cpp FileLoader.h Subject.h Observer.h GUI.cpp GUI.h)
+add_library(core ${SOURCE_FILES})
+
+target_link_libraries(core Qt6::Widgets)
+target_link_libraries(${PROJECT_NAME} core)
