@@ -72,6 +72,7 @@ void GUI::update() {
         label->setGeometry(310,230,180,100);
         label->setText(label->text() + subject->getFileName() + " caricato\n");
         progressBar->setValue(ceil(progressBar->value() + ((1.0 / subject->getNumFiles()) * 100)));
+        this_thread::sleep_for(chrono::seconds(2));
     }
     else
         errorMessage -> showMessage("Non è stato possibile caricare il file:  " + subject->getFileName());

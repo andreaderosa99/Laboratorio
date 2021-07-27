@@ -13,6 +13,8 @@
 #include <QErrorMessage>
 #include <QFrame>
 #include <cmath>
+#include <thread>
+#include <chrono>
 #include "Observer.h"
 #include "FileLoader.h"
 
