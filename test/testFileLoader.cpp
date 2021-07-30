@@ -39,6 +39,13 @@ TEST(fileLoaderTest, testLoading){ //aggiunto test per il caricamento
     ASSERT_EQ(fileLoader.isLoaded(), true);
 }
 
+TEST(fileLoaderTest, testNumFiles){ //test contatore files
+    FileLoader fileLoader;
+    File file("Document","doc",520);
+    fileLoader.addFile(file);
+    ASSERT_EQ(fileLoader.getNumFiles(), 1);
+}
+
 TEST(fileLoaderTest, testObserver){ //aggiunto test per observer
     File file("Document","doc",520);
     File file2("Note","txt",100);
