@@ -18,13 +18,11 @@ public:
 
     FileLoader() : numFiles(0) {}
 
-    //Modificato, non prende più in ingresso una lista di string
     void loadFiles();
 
-    void addFile(File& file);
-
-    //Aggiunta rimozione file
-    void removeFile(File& file);
+    //Aggiunta costanza
+    void addFile(const File& file);
+    void removeFile(const File& file);
 
     int getNumFiles() const;
 

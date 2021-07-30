@@ -34,12 +34,12 @@ void FileLoader::loadFiles() {
     }
 }
 
-void FileLoader::addFile(File& file) {
+void FileLoader::addFile(const File& file) {
     numFiles++;
     fileList.push_back(file);
 }
 
-void FileLoader::removeFile(File& file) {
+void FileLoader::removeFile(const File& file){
 
         if(!fileList.empty()){
             auto it = find(fileList.begin(),fileList.end(),file);

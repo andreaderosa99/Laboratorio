@@ -77,6 +77,9 @@ void GUI::update() {
             //Aggiunto messaggio che dice quanti file rimangono da caricare
             messageBox->setText("E' stato aggiunto un file");
             messageBox->setInformativeText("Rimangono ancora "+ remainingFiles + " files da caricare");
+            if(subject->getNumFiles()==0)
+                messageBox->setInformativeText("Caricamento completato ");
+
             messageBox->exec();
         }
 
