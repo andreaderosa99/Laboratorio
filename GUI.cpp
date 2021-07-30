@@ -67,17 +67,17 @@ void GUI::update() {
         if(subject->isLoaded()){
             label->setGeometry(310,230,200,100);
 
-            QString remainingFiles = QString::number(subject->getNumFiles());
+            QString remainingFiles = QString::number(subject->getNumFiles()-1);
 
             label->setText(label->text() + subject->getFileName() + " caricato\n");
-            progressBar->setValue(ceil(progressBar->value() + (((1.0 / (subject->getNumFiles()+1))) * 100)));
+            progressBar->setValue(ceil(progressBar->value() + (((1.0 / (subject->getNumFiles()))) * 100)));
 
             this_thread::sleep_for(chrono::seconds(1));
 
             //Aggiunto messaggio che dice quanti file rimangono da caricare
             messageBox->setText("E' stato aggiunto un file");
             messageBox->setInformativeText("Rimangono ancora "+ remainingFiles + " files da caricare");
-            if(subject->getNumFiles()==0)
+            if(subject->getNumFiles()-1==0)
                 messageBox->setInformativeText("Caricamento completato ");
 
             messageBox->exec();

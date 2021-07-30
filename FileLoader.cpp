@@ -28,14 +28,13 @@ void FileLoader::loadFiles() {
         is_Loaded=true;
 
     for (auto file_Name : fileList){
-        numFiles--;
         this->fileName = QString::fromStdString(file_Name.getName()+"."+file_Name.getExtension());
         notify();
+        fileList.pop_front();
     }
 }
 
 void FileLoader::addFile(const File& file) {
-    numFiles++;
     fileList.push_back(file);
 }
 
@@ -44,15 +43,10 @@ void FileLoader::removeFile(const File& file){
         if(!fileList.empty()){
             auto it = find(fileList.begin(),fileList.end(),file);
             fileList.remove(file);
-            numFiles--;
         }
         else throw runtime_error("Non ci sono file che possono essere eliminati");
 }
 
-
-int FileLoader::getNumFiles() const {
-    return numFiles;
-}
 
 const QString &FileLoader::getFileName() const {
     return fileName;
@@ -61,4 +55,9 @@ const QString &FileLoader::getFileName() const {
 bool FileLoader::isLoaded() const {
     return is_Loaded;
 }
+
+int FileLoader::getNumFiles() const {
+    return fileList.size();
+}
+
 

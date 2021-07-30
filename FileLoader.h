@@ -16,7 +16,7 @@
 class FileLoader : public Subject {
 public:
 
-    FileLoader() : numFiles(0) {}
+    FileLoader() {}
 
     void loadFiles();
 
@@ -36,12 +36,10 @@ public:
 
     bool isLoaded() const;
 
-
 private:
     list<File> fileList; //Ora c'è una lista di File e non di string
     list<Observer*> observers;
     bool is_Loaded;
-    int numFiles;
     QString fileName;
 };
 
