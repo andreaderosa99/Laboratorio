@@ -10,7 +10,6 @@
 #include <iostream>
 #include <QString>
 
-
 #include "Subject.h"
 #include "File.h"
 
@@ -19,10 +18,13 @@ public:
 
     FileLoader() : numFiles(0) {}
 
-    void loadFiles(list<string> &fileNames);
-    void handleFile(string fileName);
+    //Modificato, non prende più in ingresso una lista di string
+    void loadFiles();
 
-    bool isLoaded() const;
+    void addFile(File& file);
+
+    //Aggiunta rimozione file
+    void removeFile(File& file);
 
     int getNumFiles() const;
 
@@ -34,11 +36,14 @@ public:
 
     const QString &getFileName() const;
 
+    bool isLoaded() const;
+
 
 private:
+    list<File> fileList; //Ora c'è una lista di File e non di string
     list<Observer*> observers;
-    int numFiles;
     bool is_Loaded;
+    int numFiles;
     QString fileName;
 };
 

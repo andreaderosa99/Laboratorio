@@ -5,16 +5,20 @@
 #include "File.h"
 using namespace std;
 
-File::File(const char* fileName) {
-    file = fopen(fileName, "r");
-    if(!file)
-        throw runtime_error("Non è possibile aprire il file " + string(fileName));
+File::File(const string &name, const string &extension, int dimension) : name(name),extension(extension),dimension(dimension) {}
 
+File::~File() {}
+
+const string &File::getName() const {
+    return name;
 }
 
-File::~File() {
-    int control = fclose(file);
-    if(control){
-        throw runtime_error("Non è possibile chiudere il file ");
-    }
+const string &File::getExtension() const {
+    return extension;
+}
+
+bool File::operator==(const File &right) const {
+    if(name==right.name && extension==right.extension && dimension==right.dimension)
+        return true;
+    else return false;
 }

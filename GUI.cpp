@@ -29,6 +29,8 @@ GUI::GUI(FileLoader *s) : subject(s) {
 
     errorMessage = new QErrorMessage(this);
 
+    messageBox = new QMessageBox(this);
+
 
     description = new QLabel("Clicca su carica per iniziare a caricare i files",this);
     description->setGeometry(250,90,300,30);
@@ -40,18 +42,12 @@ GUI::GUI(FileLoader *s) : subject(s) {
 }
 
 void GUI::startLoadingFiles() {
-    list <string> files;
-    files.push_back("Document.doc");
-    files.push_back("Note.txt");
-    files.push_back("Document2.xlsx");
-
     try {
-        subject->loadFiles(files);
+        subject->loadFiles();
         progressBar->setValue(100);
     } catch(runtime_error& e){
         cout << e.what() << endl;
     }
-
 }
 
 GUI::~GUI() {
@@ -68,12 +64,22 @@ void GUI::detach() {
 
 void GUI::update() {
 
-    if(subject->isLoaded()) {
-        label->setGeometry(310,230,180,100);
-        label->setText(label->text() + subject->getFileName() + " caricato\n");
-        progressBar->setValue(ceil(progressBar->value() + ((1.0 / subject->getNumFiles()) * 100)));
-        this_thread::sleep_for(chrono::seconds(2));
-    }
-    else
-        errorMessage -> showMessage("Non è stato possibile caricare il file:  " + subject->getFileName());
+        if(subject->isLoaded()){
+            label->setGeometry(310,230,200,100);
+
+            QString remainingFiles = QString::number(subject->getNumFiles());
+
+            label->setText(label->text() + subject->getFileName() + " caricato\n");
+            progressBar->setValue(ceil(progressBar->value() + (((1.0 / (subject->getNumFiles()+1))) * 100)));
+
+            this_thread::sleep_for(chrono::seconds(1));
+
+            //Aggiunto messaggio che dice quanti file rimangono da caricare
+            messageBox->setText("E' stato aggiunto un file");
+            messageBox->setInformativeText("Rimangono ancora "+ remainingFiles + " files da caricare");
+            messageBox->exec();
+        }
+
+       else errorMessage -> showMessage("Non è stato caricato nessun file");
+
 }

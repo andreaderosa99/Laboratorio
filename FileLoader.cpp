@@ -17,41 +17,48 @@ void FileLoader::notify() {
         observer->update();
 }
 
-void FileLoader::loadFiles(list<string> &fileNames) {
-    numFiles = fileNames.size();
-    if (numFiles == 0){
-        throw runtime_error("Non ci sono files");
-    }
-    else {
-        for (auto fileName : fileNames)
-            handleFile(fileName);
-    }
+void FileLoader::loadFiles() {
 
-
-}
-
-void FileLoader::handleFile(string fileName) {
-    this->fileName = QString::fromStdString(fileName);
-    try {
-        File file(fileName.c_str());
-        is_Loaded = true;
+    if(fileList.empty()){
+        is_Loaded=false;
         notify();
+        throw runtime_error("Nessun file da caricare");
     }
-    catch (runtime_error& e){
-        cerr << e.what() << endl;
-        is_Loaded = false;
+    else
+        is_Loaded=true;
+
+    for (auto file_Name : fileList){
+        numFiles--;
+        this->fileName = QString::fromStdString(file_Name.getName()+"."+file_Name.getExtension());
         notify();
     }
 }
+
+void FileLoader::addFile(File& file) {
+    numFiles++;
+    fileList.push_back(file);
+}
+
+void FileLoader::removeFile(File& file) {
+
+        if(!fileList.empty()){
+            auto it = find(fileList.begin(),fileList.end(),file);
+            fileList.remove(file);
+            numFiles--;
+        }
+        else throw runtime_error("Non ci sono file che possono essere eliminati");
+}
+
 
 int FileLoader::getNumFiles() const {
     return numFiles;
+}
+
+const QString &FileLoader::getFileName() const {
+    return fileName;
 }
 
 bool FileLoader::isLoaded() const {
     return is_Loaded;
 }
 
-const QString &FileLoader::getFileName() const {
-    return fileName;
-}

@@ -5,17 +5,25 @@
 #ifndef LABORATORIO_FILE_H
 #define LABORATORIO_FILE_H
 #include <iostream>
-#include <stdexcept>
 using namespace std;
 
 class File {
 public:
-    File(const char* fileName);
+
+    //un file ora è formato da nome,estensione e dimensione
+    File(const string &name, const string &extension, int dimension);
+
     ~File();
 
+    const string &getName() const;
+
+    const string &getExtension() const;
+
+    bool operator==(const File &right) const;
 
 private:
-    FILE* file;
+    string name,extension;
+    int dimension;
 };
 
 

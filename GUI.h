@@ -11,7 +11,7 @@
 #include <QString>
 #include <QLabel>
 #include <QErrorMessage>
-#include <QFrame>
+#include <QMessageBox>
 #include <cmath>
 #include <thread>
 #include <chrono>
@@ -39,6 +39,7 @@ private:
     QLabel* label;
     QErrorMessage* errorMessage;
     QLabel* description;
+    QMessageBox* messageBox;
 };
 
 
