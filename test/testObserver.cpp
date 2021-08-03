@@ -25,12 +25,10 @@ void testObserver::startLoadingFiles() {
 
 void testObserver::update() {
     string fileName = subject->getFileName().toUtf8().constData();
-    int count = subject->getNumFiles()-1;
+
     if(subject->isLoaded()){
-        if(count>0){
-            cout<<"Il file: " + fileName + " è stato caricato, ne rimangono da caricare: "<<count<<endl;
-        }
-        else cout<<"Caricamento completato "<<endl;
+        if(subject->getNumFiles()>=1)
+            cout<<"Il file: " + fileName + " è stato caricato, ne rimangono da caricare: "<<subject->getNumFiles()-1<<endl;
     }
     else throw runtime_error("Non ci sono file da caricare");
 

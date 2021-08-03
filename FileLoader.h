@@ -16,8 +16,6 @@
 class FileLoader : public Subject {
 public:
 
-    FileLoader() {}
-
     void loadFiles();
 
     //Aggiunta costanza

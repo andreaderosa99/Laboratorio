@@ -7,8 +7,6 @@ using namespace std;
 
 File::File(const string &name, const string &extension, int dimension) : name(name),extension(extension),dimension(dimension) {}
 
-File::~File() {}
-
 const string &File::getName() const {
     return name;
 }

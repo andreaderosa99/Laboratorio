@@ -13,8 +13,6 @@ public:
     //un file ora è formato da nome,estensione e dimensione
     File(const string &name, const string &extension, int dimension);
 
-    ~File();
-
     const string &getName() const;
 
     const string &getExtension() const;

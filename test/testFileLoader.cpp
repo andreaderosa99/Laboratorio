@@ -42,8 +42,19 @@ TEST(fileLoaderTest, testLoading){ //aggiunto test per il caricamento
 TEST(fileLoaderTest, testNumFiles){ //test contatore files
     FileLoader fileLoader;
     File file("Document","doc",520);
+    File file2("Note","txt",100);
+    File file3("Document2","xlsx",837);
+
     fileLoader.addFile(file);
-    ASSERT_EQ(fileLoader.getNumFiles(), 1);
+    fileLoader.addFile(file2);
+    fileLoader.addFile(file3);
+    ASSERT_EQ(fileLoader.getNumFiles(), 3);
+
+    fileLoader.removeFile(file);
+    ASSERT_EQ(fileLoader.getNumFiles(), 2);
+
+    fileLoader.loadFiles(); //dopo il caricamento il fileloader non ha più files da caricare
+    ASSERT_EQ(fileLoader.getNumFiles(), 0);
 }
 
 TEST(fileLoaderTest, testObserver){ //aggiunto test per observer
