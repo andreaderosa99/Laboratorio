@@ -69,5 +69,9 @@ TEST(fileLoaderTest, testObserver){ //aggiunto test per observer
     fileLoader.addFile(file4);
 
     testObserver observer(&fileLoader);
+
     ASSERT_NO_THROW(observer.startLoadingFiles());
+
+    ASSERT_EQ(observer.getNumLoadedFiles(), 4); //controlla che sono stati caricati effettivamente i 4 files che doveva caricare
+
 }

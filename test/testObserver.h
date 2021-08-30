@@ -19,10 +19,13 @@ public:
     void detach() override;
     void update() override;
 
+    int getNumLoadedFiles() const;
+
     void startLoadingFiles();
 
 private:
     FileLoader* subject;
+    int numLoadedFiles;
 };
 
 
